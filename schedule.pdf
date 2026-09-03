@@ -1,0 +1,53 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Length 1 >>
+stream
+BT
+/F1 24 Tf 72 748 Td (VIRGINIA TECH HOKIES) Tj
+/F1 17 Tf 0 -28 Td (2025-26 SCHEDULE) Tj
+/F1 11 Tf 0 -38 Td (DATE       OPPONENT) Tj
+/F1 10 Tf 0 -22 Td (09/12/25   LIBERTY) Tj
+0 -17 Td (09/13/25   at LIBERTY) Tj
+0 -17 Td (09/26/25   TENNESSEE) Tj
+0 -17 Td (09/27/25   NC STATE) Tj
+0 -17 Td (10/03/25   UNC) Tj
+0 -17 Td (10/04/25   UNC) Tj
+0 -17 Td (10/10/25   at WEST VIRGINIA) Tj
+0 -17 Td (10/11/25   at WEST VIRGINIA) Tj
+0 -17 Td (10/17/25   at LIBERTY) Tj
+0 -17 Td (10/18/25   LIBERTY) Tj
+0 -17 Td (10/24/25   at UNCW) Tj
+0 -17 Td (10/25/25   at UNCW) Tj
+0 -17 Td (11/07/25   at MARYLAND) Tj
+0 -17 Td (11/08/25   at MARYLAND) Tj
+0 -17 Td (11/14/25   ACCHL TOURNAMENT) Tj
+0 -17 Td (11/15/25   ACCHL TOURNAMENT) Tj
+0 -17 Td (11/16/25   ACCHL TOURNAMENT) Tj
+0 -17 Td (11/21/25   GEORGIA) Tj
+0 -17 Td (12/05/25   RIDER) Tj
+0 -17 Td (12/06/25   RIDER) Tj
+0 -17 Td (01/09/26   HIGH POINT) Tj
+0 -17 Td (01/10/26   HIGH POINT) Tj
+0 -17 Td (01/16/26   at OHIO) Tj
+0 -17 Td (01/17/26   at OHIO) Tj
+0 -17 Td (01/23/26   WAKE FOREST) Tj
+0 -17 Td (01/24/26   WAKE FOREST) Tj
+0 -17 Td (01/30/26   TOWSON (D1)) Tj
+ET
+endstream
+endobj
+trailer
+<< /Root 1 0 R >>
+%%EOF
