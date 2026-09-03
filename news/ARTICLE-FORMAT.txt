@@ -1,0 +1,11 @@
+Add one Markdown file per article to this folder in GitHub.
+
+Example front matter:
+---
+title: Hokies open the season with a win
+category: GAME RECAP
+summary: A short summary shown on the news card.
+date: 2026-09-12
+---
+
+Write the full article here. The first 170 characters become the fallback summary.
