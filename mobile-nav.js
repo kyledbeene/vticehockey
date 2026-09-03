@@ -1,5 +1,8 @@
 const navigation = document.querySelector('.nav');
 if (navigation) {
+  const mobileStyles = document.createElement('style');
+  mobileStyles.textContent = '@media (max-width:760px){.team-menu .team-dropdown{display:none}.team-menu.open .team-dropdown{display:block}}';
+  document.head.appendChild(mobileStyles);
   let menuToggle = document.querySelector('.menu-toggle');
   if (!menuToggle) {
     menuToggle = document.createElement('button');
@@ -20,4 +23,14 @@ if (navigation) {
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Open menu');
   }));
+  const teamMenu = navigation.querySelector('.team-menu');
+  const teamButton = teamMenu?.querySelector(':scope > button');
+  if (teamMenu && teamButton) {
+    teamButton.setAttribute('aria-expanded', 'false');
+    teamButton.addEventListener('click', event => {
+      event.stopPropagation();
+      const open = teamMenu.classList.toggle('open');
+      teamButton.setAttribute('aria-expanded', String(open));
+    });
+  }
 }
