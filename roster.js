@@ -42,5 +42,7 @@ const yearAbbreviations = { Freshman: 'FR', Sophomore: 'SO', Junior: 'JR', Senio
 document.querySelectorAll('.roster-section').forEach(section => {
   const group = section.dataset.group;
   const players = rosterGroups[group] || [];
-  section.innerHTML = `<h3>${section.dataset.title}</h3><div class="roster-table roster-table-head">${rosterColumns.map(column => `<span>${column}</span>`).join('')}</div>${players.map(player => `<div class="roster-table"><span>${player[0]}</span><strong>${player[1]}</strong><span>${yearAbbreviations[player[2]]}</span><span>${player[3]}</span><span>${player[4]}</span><span>${player[5]}</span><span>${player[6]}</span></div>`).join('')}`;
+  const handLabel = group === 'goalies' ? 'Glove' : 'Shoots';
+  const columns = rosterColumns.map(column => column === 'Shot / Catch' ? handLabel : column);
+  section.innerHTML = `<h3>${section.dataset.title}</h3><div class="roster-table roster-table-head">${columns.map(column => `<span>${column}</span>`).join('')}</div>${players.map(player => `<div class="roster-table"><span>${player[0]}</span><strong>${player[1]}</strong><span>${yearAbbreviations[player[2]]}</span><span>${player[3]}</span><span>${player[4]}</span><span>${player[5]}</span><span>${player[6]}</span></div>`).join('')}`;
 });
