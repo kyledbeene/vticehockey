@@ -3,7 +3,7 @@ function initializeMobileNavigation() {
   if (!navigation || navigation.dataset.mobileNavigationReady) return;
   navigation.dataset.mobileNavigationReady = 'true';
   const mobileStyles = document.createElement('style');
-  mobileStyles.textContent = '.footer-brand{align-items:center;display:inline-flex;gap:10px}.footer-brand img{background:#fff;display:block;height:42px;object-fit:contain;padding:3px;width:36px}.footer-brand span{color:inherit}@media (max-width:760px){.team-menu .team-dropdown{display:none}.team-menu.open .team-dropdown{display:block}.footer-brand img{height:34px;width:30px}}';
+  mobileStyles.textContent = '.footer-inner{align-items:center}.footer-inner b{display:inline-block;line-height:1}.footer-brand{align-items:center;display:inline-flex;gap:10px}.footer-brand img{background:#fff;display:block;height:42px;object-fit:contain;padding:3px;width:36px}.footer-brand span{color:inherit}@media (max-width:760px){.team-menu .team-dropdown{display:none}.team-menu.open .team-dropdown{display:block}.footer-brand img{height:34px;width:30px}}';
   document.head.appendChild(mobileStyles);
   let menuToggle = document.querySelector('.menu-toggle');
   if (!menuToggle) {
