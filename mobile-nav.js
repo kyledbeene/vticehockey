@@ -1,7 +1,9 @@
-const navigation = document.querySelector('.nav');
-if (navigation) {
+function initializeMobileNavigation() {
+  const navigation = document.querySelector('.nav');
+  if (!navigation || navigation.dataset.mobileNavigationReady) return;
+  navigation.dataset.mobileNavigationReady = 'true';
   const mobileStyles = document.createElement('style');
-  mobileStyles.textContent = '@media (max-width:760px){.team-menu .team-dropdown{display:none}.team-menu.open .team-dropdown{display:block}}';
+  mobileStyles.textContent = '.footer-brand{align-items:center;display:inline-flex;gap:10px}.footer-brand img{background:#fff;display:block;height:42px;object-fit:contain;padding:3px;width:36px}.footer-brand span{color:inherit}@media (max-width:760px){.team-menu .team-dropdown{display:none}.team-menu.open .team-dropdown{display:block}.footer-brand img{height:34px;width:30px}}';
   document.head.appendChild(mobileStyles);
   let menuToggle = document.querySelector('.menu-toggle');
   if (!menuToggle) {
@@ -24,7 +26,7 @@ if (navigation) {
     menuToggle.setAttribute('aria-label', 'Open menu');
   }));
   const teamMenu = navigation.querySelector('.team-menu');
-  const teamButton = teamMenu?.querySelector(':scope > button');
+  const teamButton = teamMenu?.querySelector('button');
   if (teamMenu && teamButton) {
     teamButton.setAttribute('aria-expanded', 'false');
     teamButton.addEventListener('click', event => {
@@ -33,4 +35,12 @@ if (navigation) {
       teamButton.setAttribute('aria-expanded', String(open));
     });
   }
+  const footerLabel = document.querySelector('.footer-inner > span:first-child');
+  if (footerLabel && !footerLabel.classList.contains('footer-brand')) {
+    footerLabel.className = 'footer-brand';
+    footerLabel.innerHTML = '<img src="' + (location.pathname.includes('/photos/') ? '../../clubsports.png' : 'clubsports.png') + '" alt="Virginia Tech Sport Clubs"><span>VIRGINIA TECH CLUB HOCKEY</span>';
+  }
 }
+
+window.initializeMobileNavigation = initializeMobileNavigation;
+initializeMobileNavigation();
