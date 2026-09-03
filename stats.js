@@ -60,25 +60,26 @@ function sortRows(rows, sortKey) {
   });
 }
 
-function addSortControl(table, rows) {
-  const section = table.closest('.stats-section');
-  const header = section.querySelector('.stats-section-header');
-  const select = document.createElement('select');
-  select.className = 'stats-sort';
-  select.setAttribute('aria-label', `Sort ${section.querySelector('h2').textContent} statistics`);
-  const headers = [...table.querySelectorAll('thead th')].map(headerCell => headerCell.textContent.trim());
-  const options = [
-    ['number:asc', 'Roster number: low to high'],
-    ['number:desc', 'Roster number: high to low'],
-    ['name:asc', 'Last name: A to Z'],
-    ['name:desc', 'Last name: Z to A'],
-    ['position:asc', 'Position: A to Z'],
-    ['position:desc', 'Position: Z to A'],
-    ...headers.slice(3).flatMap((label, index) => [[`stat:${index + 3}:desc`, `${label}: highest to lowest`], [`stat:${index + 3}:asc`, `${label}: lowest to highest`]])
-  ];
-  select.innerHTML = options.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
-  header.appendChild(select);
-  select.addEventListener('change', () => renderRows(table, sortRows(loadedRows.get(table), select.value)));
+function addHeaderSorting(table, rows) {
+  const headers = [...table.querySelectorAll('thead th')];
+  headers.forEach((header, columnIndex) => {
+    header.classList.add('stats-sortable');
+    header.setAttribute('tabindex', '0');
+    header.setAttribute('role', 'button');
+    header.setAttribute('aria-label', `Sort by ${header.textContent.trim()}`);
+    header.dataset.sortDirection = columnIndex === 0 ? 'asc' : '';
+    const sort = direction => {
+      headers.forEach(cell => { cell.removeAttribute('aria-sort'); cell.dataset.sortDirection = ''; });
+      header.dataset.sortDirection = direction;
+      header.setAttribute('aria-sort', direction === 'asc' ? 'ascending' : 'descending');
+      renderRows(table, sortRows(loadedRows.get(table), columnIndex === 0 ? `number:${direction}` : columnIndex === 1 ? `name:${direction}` : columnIndex === 2 ? `position:${direction}` : `stat:${columnIndex}:${direction}`));
+    };
+    header.addEventListener('click', () => sort(header.dataset.sortDirection === 'asc' ? 'desc' : 'asc'));
+    header.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); header.click(); }
+    });
+  });
+  headers[0].setAttribute('aria-sort', 'ascending');
   loadedRows.set(table, rows);
 }
 
@@ -90,12 +91,12 @@ async function loadTable(table, path, fallback) {
     if (!rows.length) throw new Error(`No rows in ${path}`);
     loadedRows.set(table, rows);
     renderRows(table, sortRows(rows, 'number:asc'));
-    addSortControl(table, rows);
+    addHeaderSorting(table, rows);
   } catch (error) {
     const rows = fallbackRows(fallback);
     loadedRows.set(table, rows);
     renderRows(table, sortRows(rows, 'number:asc'));
-    addSortControl(table, rows);
+    addHeaderSorting(table, rows);
     console.info(`${path} is not available; showing the local fallback roster.`);
   }
 }
