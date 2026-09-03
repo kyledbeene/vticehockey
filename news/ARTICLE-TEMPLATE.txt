@@ -1,0 +1,22 @@
+Copy this file, rename it with lowercase hyphens, and change the fields below.
+
+Filename example:
+2026-09-12-season-opener.md
+
+---
+title: Hokies open the season with a win
+category: GAME RECAP
+summary: A short summary shown on the News card and homepage carousel.
+date: 2026-09-12
+image: https://your-image-url.example.com/season-opener.jpg
+---
+
+# Hokies open the season with a win
+
+![Hokies open the season with a win](https://your-image-url.example.com/season-opener.jpg)
+
+Write the full article here. Use plain Markdown.
+
+The optional image URL is displayed at the top of the News card and homepage carousel data. Upload the image wherever you host site assets, then paste its direct image URL above.
+
+Add paragraphs, ## headings, and bullet lists as needed.
