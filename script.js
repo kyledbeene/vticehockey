@@ -43,9 +43,6 @@ window.addEventListener('news:updated', event => {
 function restartTimer() { window.clearInterval(timer); timer = window.setInterval(() => showArticle(active + 1), 6500); }
 document.querySelector('.next').addEventListener('click', () => { showArticle(active + 1); restartTimer(); });
 document.querySelector('.prev').addEventListener('click', () => { showArticle(active - 1); restartTimer(); });
-const menu = document.querySelector('.menu-toggle');
-menu.addEventListener('click', () => { const nav = document.querySelector('.nav'); const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', open); });
-document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => document.querySelector('.nav').classList.remove('open')));
 restartTimer();
 if (window.location.hash === '#scores') window.location.replace('scores.html');
 if (window.location.hash === '#news') window.location.replace('news.html');
