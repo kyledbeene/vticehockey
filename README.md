@@ -34,3 +34,11 @@ Create one folder per game inside `photos` and name it `YYYY-MM-DD-opponent`, su
 ## Stats
 
 Update `stats/skaters.csv` and `stats/goalies.csv` directly in GitHub or open them in Excel or Google Sheets. Keep the first-row headers and their order unchanged, then edit the values in each player's row. The Stats page loads the CSV files automatically after they are committed. See `stats/README.txt` for the column order.
+
+## Game reports
+
+Add one Markdown file to `game-reports` for each completed game. Name it with the exact game ID from `scores.html`, such as `2026-09-11-nc-state.md`. The shared report page loads the title, summary, and recap from that file automatically. Update the score values in `scores.html` separately; the report matchup and homepage score cards read those values automatically. See `game-reports/REPORT-TEMPLATE.txt` for the format.
+
+## Scores and schedule
+
+Update every game in `games.csv`. Keep the header row unchanged and edit `vt_score` and `opp_score` when a result is final. Use `TBD` for games that have not been played. The Scores page, homepage result cards, and Game Report matchup all load this one file automatically. Do not edit the static game cards in `scores.html`; they are fallback markup only.
