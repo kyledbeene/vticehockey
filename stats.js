@@ -62,7 +62,13 @@ function sortRows(rows, sortKey) {
 
 function addHeaderSorting(table, rows) {
   const headers = [...table.querySelectorAll('thead th')];
+  const isGoalieTable = table.closest('.stats-section').querySelector('h2').textContent.trim().toLowerCase() === 'goalies';
   headers.forEach((header, columnIndex) => {
+    if (isGoalieTable && columnIndex === 2) {
+      header.classList.add('stats-static');
+      header.setAttribute('aria-label', 'Position');
+      return;
+    }
     header.classList.add('stats-sortable');
     header.setAttribute('tabindex', '0');
     header.setAttribute('role', 'button');
