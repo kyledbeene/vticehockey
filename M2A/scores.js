@@ -1,4 +1,9 @@
 const scoreGrid = document.querySelector('.score-grid');
+// Smooths in fetched cards that arrive after the page-navigation transition has already settled.
+function withViewTransition(update) {
+  if (document.startViewTransition) document.startViewTransition(update);
+  else update();
+}
 // Add a new entry at the top when a new season starts, and add a matching games-YYYY-YY.csv file.
 const gameSeasons = [
   { id: '2026-27', label: '2026-27', file: 'games-2026-27.csv' }
@@ -71,7 +76,7 @@ async function loadGames(season) {
     const response = await fetch(season.file, {cache:'no-store'});
     if (!response.ok) throw new Error('Games file unavailable');
     const games = parseCsv(await response.text()).map(row => ({id:row[0], date:row[1], location:row[2], opponent:row[3], vt_score:row[4], opp_score:row[5]}));
-    scoreGrid.innerHTML = games.map((game, index) => gameCard(game, index)).join('');
+    withViewTransition(() => { scoreGrid.innerHTML = games.map((game, index) => gameCard(game, index)).join(''); });
   } catch (error) {
     console.info('Games CSV is not available; keeping the static score schedule.');
   }

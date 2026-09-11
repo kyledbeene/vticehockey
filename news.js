@@ -8,6 +8,11 @@ const fallbackArticles = [
   { category: 'COMMUNITY', title: 'Maroon and orange show up on home ice', summary: 'Hokie Nation brings the energy every time the team takes the ice.', number: '05' }
 ];
 const grid = document.querySelector('.news-grid');
+// Smooths in fetched articles that arrive after the page-navigation transition has already settled.
+function withViewTransition(update) {
+  if (document.startViewTransition) document.startViewTransition(update);
+  else update();
+}
 function parseFrontMatter(markdown, filename) {
   const match = markdown.match(/^---\s*([\s\S]*?)\s*---/);
   const fields = {};
@@ -16,7 +21,9 @@ function parseFrontMatter(markdown, filename) {
   return { category: fields.category || 'NEWS', title: fields.title || filename.replace(/\.md$/i, '').replace(/[-_]/g, ' '), summary: fields.summary || body.slice(0, 170), date: fields.date || '', image: fields.image || '', filename, url: `article.html?article=${encodeURIComponent(filename)}` };
 }
 function renderArticles(articles) {
-  if (grid) grid.innerHTML = articles.map((article, index) => `<article class="news-card${index === 0 ? ' featured' : ''}">${article.image ? `<img class="news-card-image" src="${article.image}" alt="" />` : ''}<span class="card-number">${String(index + 1).padStart(2, '0')}</span><span class="card-tag">${article.category}</span><h2>${article.title}</h2><p>${article.summary}</p><a class="text-link" href="${article.url || `article.html?article=${encodeURIComponent(article.title)}`}">Read story <span>↗</span></a></article>`).join('');
+  withViewTransition(() => {
+    if (grid) grid.innerHTML = articles.map((article, index) => `<article class="news-card${index === 0 ? ' featured' : ''}">${article.image ? `<img class="news-card-image" src="${article.image}" alt="" />` : ''}<span class="card-number">${String(index + 1).padStart(2, '0')}</span><span class="card-tag">${article.category}</span><h2>${article.title}</h2><p>${article.summary}</p><a class="text-link" href="${article.url || `article.html?article=${encodeURIComponent(article.title)}`}">Read story <span>↗</span></a></article>`).join('');
+  });
   window.dispatchEvent(new CustomEvent('news:updated', { detail: articles }));
 }
 async function loadGitHubArticles() {
