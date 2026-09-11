@@ -7,6 +7,26 @@ const opponentKey = gameParts.slice(3).join('-');
 const opponentNames = {
   'nc-state': 'NC State D1', unc: 'UNC D1', lindenwood: 'Lindenwood', siena: 'Siena', 'weber-state': 'Weber State', liberty: 'Liberty', 'liberty-d1': 'Liberty D1', 'wake-forest': 'Wake Forest', uncw: 'UNCW', hpu: 'HPU', 'fall-classic': 'ACCHL Fall Classic', 'south-carolina': 'South Carolina', wvu: 'WVU', ohio: 'Ohio', 'miami-oh': 'Miami (OH)', maryland: 'Maryland', 'acchl-playoffs': 'ACCHL Playoffs', 'acha-regionals': 'ACHA SE Regionals'
 };
+const opponentLogoMap = {
+  'nc-state': 'school-logos/ncstate.png',
+  unc: 'school-logos/unc.png',
+  lindenwood: 'school-logos/lindenwood.png',
+  siena: 'school-logos/siena.png',
+  'weber-state': 'school-logos/weberst.png',
+  liberty: 'school-logos/libertyaway.png',
+  'liberty-d1': 'school-logos/libertyaway.png',
+  'wake-forest': 'school-logos/wakeforest.png',
+  uncw: 'school-logos/uncw.png',
+  hpu: 'school-logos/highpoint.png',
+  'fall-classic': 'school-logos/acchl.png',
+  'south-carolina': 'school-logos/acha.png',
+  wvu: 'school-logos/westvirginia.png',
+  ohio: 'school-logos/ohio.png',
+  'miami-oh': 'school-logos/miami.png',
+  maryland: 'school-logos/maryland.png',
+  'acchl-playoffs': 'school-logos/acchl.png',
+  'acha-regionals': 'school-logos/acha.png'
+};
 const awayGames = new Set(['2026-09-11-nc-state', '2026-09-12-unc', '2026-09-18-lindenwood', '2026-09-19-siena', '2026-09-20-weber-state', '2026-09-25-liberty', '2026-10-09-wake-forest', '2026-10-10-wake-forest', '2026-10-23-hpu', '2026-10-24-hpu', '2026-10-30-liberty-d1', '2026-11-13-liberty']);
 const neutralGames = new Set(['2026-11-06-fall-classic', '2026-11-07-fall-classic', '2026-11-08-fall-classic', '2026-11-20-south-carolina', '2027-02-12-acchl-playoffs', '2027-02-13-acchl-playoffs', '2027-02-14-acchl-playoffs', '2027-02-19-acha-regionals', '2027-02-20-acha-regionals']);
 const gameLocation = neutralGames.has(gameId) ? 'Neutral' : awayGames.has(gameId) ? 'Away' : 'Home';
@@ -28,6 +48,11 @@ function renderMarkdown(markdown) {
   }).join('');
 }
 function renderReport(report) {
+  const opponentLogo = opponentKey === 'liberty' || opponentKey === 'liberty-d1'
+    ? gameLocation === 'Home' ? 'school-logos/libertyhome.png' : 'school-logos/libertyaway.png'
+    : opponentLogoMap[opponentKey] || 'school-logos/libertyaway.png';
+  const opponentLogoEl = document.querySelector('#report-opponent-logo');
+  const opponentBadge = opponent.replace(/[^A-Za-z ]/g, '').split(/\s+/).map(word => word[0]).join('').slice(0, 4).toUpperCase() || 'OPP';
   document.title = `${opponent} | Virginia Tech Hockey Game Report`;
   document.querySelector('#report-title').innerHTML = `${opponent.toUpperCase()} <em>REPORT.</em>`;
   document.querySelector('#report-meta').textContent = `${report.date} · ${gameLocation}`;
@@ -37,11 +62,28 @@ function renderReport(report) {
   document.querySelector('#report-date').textContent = readableDate;
   document.querySelector('#report-location').textContent = gameLocation;
   document.querySelector('#report-opponent').textContent = opponent;
-  document.querySelector('#report-opponent-mark').textContent = opponent.replace(/[^A-Za-z ]/g, '').split(/\s+/).map(word => word[0]).join('').slice(0, 4).toUpperCase();
+  if (opponentLogoEl) {
+    opponentLogoEl.src = opponentLogo;
+    opponentLogoEl.alt = `${opponent} logo`;
+    opponentLogoEl.onerror = function() {
+      this.style.display = 'none';
+      const fallbackMark = document.querySelector('#report-opponent-mark');
+      if (fallbackMark) {
+        fallbackMark.textContent = opponentBadge;
+        fallbackMark.style.display = 'flex';
+      }
+    };
+  }
+  const fallbackMark = document.querySelector('#report-opponent-mark');
+  if (fallbackMark) {
+    fallbackMark.textContent = opponentBadge;
+    fallbackMark.style.display = 'none';
+  }
 }
 async function loadScore() {
   try {
-    const response = await fetch('games.csv', { cache: 'no-store' });
+    // Update this filename when a new season's games CSV is added.
+    const response = await fetch('games-2026-27.csv', { cache: 'no-store' });
     if (!response.ok) return;
     const row = responseTextToRows(await response.text()).find(item => item[0] === gameId);
     if (!row) return;
