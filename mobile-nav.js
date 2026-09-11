@@ -28,16 +28,16 @@ function initializeMobileNavigation() {
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Open menu');
   }));
-  const teamMenu = navigation.querySelector('.team-menu');
-  const teamButton = teamMenu?.querySelector('button');
-  if (teamMenu && teamButton) {
+  navigation.querySelectorAll('.team-menu').forEach(teamMenu => {
+    const teamButton = teamMenu.querySelector('button');
+    if (!teamButton) return;
     teamButton.setAttribute('aria-expanded', 'false');
     teamButton.addEventListener('click', event => {
       event.stopPropagation();
       const open = teamMenu.classList.toggle('open');
       teamButton.setAttribute('aria-expanded', String(open));
     });
-  }
+  });
   const footerLabel = document.querySelector('.footer-inner > span:first-child');
   if (footerLabel && !footerLabel.classList.contains('footer-brand')) {
     footerLabel.className = 'footer-brand';
