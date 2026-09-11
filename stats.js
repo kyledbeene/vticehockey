@@ -1,5 +1,10 @@
+// Add a new entry at the top when a new season starts, and add matching stats/skaters-YYYY-YY.csv and stats/goalies-YYYY-YY.csv files.
+const statsSeasons = [
+  { id: '2026-27', label: '2026-27', skaters: 'stats/skaters-2026-27.csv', goalies: 'stats/goalies-2026-27.csv' }
+];
+
 const fallbackSkaters = [
-  [2, 'Bryan Rice', 'D'], [3, 'Ethan Garlock', 'F'], [6, "Justin D'Antona", 'F'], [7, 'Jackson Lages', 'D'], [8, 'Cooper Reger', 'F'], [9, 'Sean Mohr', 'D'], [10, 'Zack Stewart', 'F'], [11, 'Michael McCabe', 'F'], [13, 'Murphy MacLeod', 'D'], [14, 'Barrett Lunder', 'F'], [15, 'Tyler Gordon', 'F'], [16, 'Jacob Wachtel', 'F'], [18, 'Casey Reagan', 'D'], [19, 'Hunter Day', 'D'], [20, 'Tyler Skarka', 'D'], [21, 'Gavin Nau', 'F'], [22, 'Max Sullivan', 'D'], [24, 'West Vaillant', 'F'], [25, 'William Linardakis', 'D'], [26, 'Chase Olszewski', 'F'], [27, 'Dhruv Thakare', 'D'], [40, 'Jackson DeVivo', 'F'], [41, 'Kam Khazai', 'F'], [42, 'Ewan Andrew', 'F']
+  [2, 'Bryan Rice', 'D'], [3, 'Ethan Garlock', 'F'], [6, "Justin D'Antona", 'F'], [7, 'JH Lages', 'D'], [8, 'Cooper Reger', 'F'], [9, 'Sean Mohr', 'D'], [10, 'Zack Stewart', 'F'], [11, 'Michael McCabe', 'F'], [13, 'Murphy MacLeod', 'D'], [14, 'Barrett Lunder', 'F'], [15, 'Tyler Gordon', 'F'], [16, 'Jacob Wachtel', 'F'], [18, 'Casey Reagan', 'D'], [19, 'Hunter Day', 'D'], [20, 'Tyler Skarka', 'D'], [21, 'Gavin Nau', 'F'], [22, 'Max Sullivan', 'D'], [24, 'West Vaillant', 'F'], [25, 'Billy Linardakis', 'D'], [26, 'Chase Olszewski', 'F'], [27, 'Dhruv Thakare', 'D'], [40, 'Jackson DeVivo', 'F'], [41, 'Kam Khazai', 'F'], [42, 'Ewan Andrew', 'F']
 ];
 const fallbackGoalies = [[30, 'Declan Heffernan', 'G'], [31, 'Wyatt Cleveland', 'G'], [32, 'Aidan Khazai', 'G'], [33, 'Tucker Forrest', 'G']];
 const tables = document.querySelectorAll('.stats-table');
@@ -107,5 +112,21 @@ async function loadTable(table, path, fallback) {
   }
 }
 
-loadTable(tables[0], 'stats/skaters.csv', fallbackSkaters);
-loadTable(tables[1], 'stats/goalies.csv', fallbackGoalies);
+function loadSeason(season) {
+  document.querySelectorAll('[data-season-text]').forEach(el => { el.textContent = season.label; });
+  loadTable(tables[0], season.skaters, fallbackSkaters);
+  loadTable(tables[1], season.goalies, fallbackGoalies);
+}
+
+function initSeasonSelect() {
+  const select = document.querySelector('#stats-season-select');
+  if (!select) return;
+  select.innerHTML = statsSeasons.map(season => `<option value="${season.id}">${season.label}</option>`).join('');
+  select.addEventListener('change', () => {
+    const season = statsSeasons.find(item => item.id === select.value) || statsSeasons[0];
+    loadSeason(season);
+  });
+}
+
+initSeasonSelect();
+loadSeason(statsSeasons[0]);
