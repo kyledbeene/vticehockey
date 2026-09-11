@@ -9,22 +9,81 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="roster.css" />
     <style>.team-menu>button{font-size:14px;line-height:17px;position:relative;top:1px}.team-menu>button span{vertical-align:middle;position:relative;top:-5px}</style>
   </head>
   <body>
-    <div class="topline"><div class="page-width top-line-inner"><span>EST. 1997</span><span>ACHA DIVISION II</span><span>BLACKSBURG, VIRGINIA</span></div></div>
+    <div class="topline"><div class="page-width top-line-inner"><span>EST. 1985</span><span>ACHA DIVISION II</span><span>BLACKSBURG, VIRGINIA</span><a class="team-swap-link" href="M2A/index.html">SWAP TO M2A &#8594;</a></div></div>
     <header class="site-header">
       <div class="page-width header-inner">
         <a class="brand" href="index.html" aria-label="Virginia Tech Hockey home"><div class="crest"><span>VT</span><i></i></div><div class="brand-copy"><strong>VIRGINIA TECH</strong><span>CLUB HOCKEY</span></div></a>
-        <nav class="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="index.html#news">News</a><a href="schedule.html">Schedule</a><a href="index.html#scores">Scores</a><a href="game-notes.html" style="white-space:nowrap">Game Notes</a><a href="photos.html">Photos</a><div class="team-menu"><button type="button">Team <span>⌄</span></button><div class="team-dropdown"><a class="active" href="roster.html">Roster</a><a href="coaches.html">Coaches</a><a href="off-ice-staff.html">Off-Ice Staff</a></div></div><a href="index.html#stats">Stats</a><a class="watch-link" href="http://www.youtube.com/@VTHockey" target="_blank" rel="noopener noreferrer"><span class="play-dot">▶</span> Watch</a></nav>
+        <nav class="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="index.html#news">News</a><a href="schedule.html">Schedule</a><a href="index.html#scores">Scores</a><a href="game-notes.html" style="white-space:nowrap">Game Notes</a><a href="photos.html">Photos</a><div class="team-menu"><button type="button">Team <span>⌄</span></button><div class="team-dropdown"><a class="active" href="roster.html">Roster</a><a href="coaches.html">Coaches</a><a href="off-ice-staff.html">Off-Ice Staff</a></div></div><a href="index.html#stats">Stats</a><div class="team-menu more-menu"><button type="button">More <span>⌄</span></button><div class="team-dropdown"><a href="sponsors.html">Sponsors</a><a href="player-interest.html">Player Interest</a><a href="about.html">About</a></div></div><a class="watch-link" href="http://www.youtube.com/@VTHockey" target="_blank" rel="noopener noreferrer"><span class="play-dot">▶</span> Watch</a></nav>
       </div>
     </header>
     <main class="page-width roster-page">
-      <p class="eyebrow"><span></span> 2024 / 25 ROSTER</p>
+      <p class="eyebrow"><span></span> <span data-season-text>2026-27</span> ROSTER</p>
       <h1>THE <em>ROSTER.</em></h1>
-      <p class="page-intro">The official Virginia Tech Hokies roster from the 2024-25 season.</p>
-      <section class="pdf-panel" aria-label="2024 / 25 roster PDF"><div class="pdf-heading"><div><small>OFFICIAL TEAM DOCUMENT</small><h2>Virginia Tech Club Hockey Roster</h2></div><a class="button button-orange" href="roster.pdf" download>Download PDF <span>↓</span></a></div><img class="roster-preview" src="roster.jpg" alt="Virginia Tech Hokies 2024-25 roster showing forwards, defensemen, and goalies" /></section>
+      <p class="page-intro">The official Virginia Tech Hokies roster from the <span data-season-text>2026-27</span> season.</p>
+      <label class="season-select-label">Season <select id="roster-season-select" class="season-select"></select></label>
+      <section class="roster-sheet" aria-label="2026 / 27 Virginia Tech Hokies roster">
+        <div class="roster-sheet-head">
+          <div class="roster-mark" aria-hidden="true"><span>VT</span><i></i></div>
+          <div><p>VIRGINIA TECH HOKIES</p><h2><span data-season-text>2026-27</span> <em>ROSTER</em></h2></div>
+          <div class="roster-season">ACHA<br />DIVISION II</div>
+        </div>
+        <div class="roster-rule"></div>
+        <div class="roster-meta"><span>ACHA MEMBER SINCE 1991</span><span>VIRGINIATECHICEHOCKEY.COM</span><span>@VTICEHOCKEY</span></div>
+        <div class="roster-rule"></div>
+        <div class="roster-section" data-group="forwards" data-title="Forwards">
+          <h3>Forwards</h3>
+          <div class="roster-table roster-table-head"><span>#</span><span>Name</span><span>Yr</span><span>Hometown</span></div>
+          <div class="roster-table"><span>1</span><strong>West Vaillant</strong><span>FR</span><span>Exeter, NH</span></div>
+          <div class="roster-table"><span>3</span><strong>Ethan Garlock</strong><span>JR</span><span>Princeton, NJ</span></div>
+          <div class="roster-table"><span>6</span><strong>Justin D'Antona</strong><span>FR</span><span>Melrose, MA</span></div>
+          <div class="roster-table"><span>10</span><strong>Zack Stewart</strong><span>SO</span><span>Richmond, VA</span></div>
+          <div class="roster-table"><span>11</span><strong>Matt Tullo</strong><span>SR</span><span>Southwick, MA</span></div>
+          <div class="roster-table"><span>12</span><strong>Gavin Peduzzi</strong><span>5TH</span><span>Frederick, MD</span></div>
+          <div class="roster-table"><span>14</span><strong>Barrett Lunder</strong><span>JR</span><span>South Salem, NY</span></div>
+          <div class="roster-table"><span>15</span><strong>Tyler Gordon</strong><span>JR</span><span>Woodbridge, VA</span></div>
+          <div class="roster-table"><span>16</span><strong>Jacob Wachtel</strong><span>FR</span><span>New Providence, NJ</span></div>
+          <div class="roster-table"><span>17</span><strong>Austin Hryn</strong><span>SO</span><span>Cary, NC</span></div>
+          <div class="roster-table"><span>19</span><strong>Colm Mulhall</strong><span>FR</span><span>Milton, MA</span></div>
+          <div class="roster-table"><span>21</span><strong>Gavin Nau</strong><span>FR</span><span>Pennington, NJ</span></div>
+          <div class="roster-table"><span>23</span><strong>Chris Kube</strong><span>SR</span><span>Cranford, NJ</span></div>
+          <div class="roster-table"><span>24</span><strong>John Ryan</strong><span>FR</span><span>Ashburn, VA</span></div>
+          <div class="roster-table"><span>26</span><strong>Arthur Seng</strong><span>SR</span><span>Springfield, VA</span></div>
+          <div class="roster-table"><span>28</span><strong>Matt Veneri</strong><span>5TH</span><span>Laconia, NH</span></div>
+          <div class="roster-table"><span>29</span><strong>Marshall Campbell</strong><span>JR</span><span>Mechanicsville, VA</span></div>
+          <div class="roster-table"><span>40</span><strong>Jackson DeVivo</strong><span>FR</span><span>Newburyport, MA</span></div>
+          <div class="roster-table"><span>41</span><strong>Kam Khazai</strong><span>JR</span><span>McLean, VA</span></div>
+          <div class="roster-table"><span>42</span><strong>Ewan Andrew</strong><span>JR</span><span>Raleigh, NC</span></div>
+        </div>
+        <div class="roster-section" data-group="defensemen" data-title="Defensemen">
+          <h3>Defensemen</h3>
+          <div class="roster-table roster-table-head"><span>#</span><span>Name</span><span>Yr</span><span>Hometown</span></div>
+          <div class="roster-table"><span>2</span><strong>Bryan Rice</strong><span>SO</span><span>Bowie, MD</span></div>
+          <div class="roster-table"><span>4</span><strong>Trevor Kellogg</strong><span>SR</span><span>Shelton, CT</span></div>
+          <div class="roster-table"><span>5</span><strong>Thao Lanagan</strong><span>SR</span><span>Hanover, MA</span></div>
+          <div class="roster-table"><span>7</span><strong>JH Lages</strong><span>SO</span><span>McLean, VA</span></div>
+          <div class="roster-table"><span>9</span><strong>Sean Mohr</strong><span>FR</span><span>Mamaroneck, NY</span></div>
+          <div class="roster-table"><span>13</span><strong>Murphy, MacLeod</strong><span>FR</span><span>Westford, MA</span></div>
+          <div class="roster-table"><span>20</span><strong>Tyler Sharka</strong><span>FR</span><span>Leesburg, VA</span></div>
+          <div class="roster-table"><span>22</span><strong>Max Sullivan</strong><span>SO</span><span>Cary, NC</span></div>
+          <div class="roster-table"><span>25</span><strong>Jacob Davidovits</strong><span>SR</span><span>Oakton, VA</span></div>
+          <div class="roster-table"><span>27</span><strong>Dhruv Thakare</strong><span>SO</span><span>Scotch Plains, NJ</span></div>
+        </div>
+        <div class="roster-section roster-section-goalies" data-group="goalies" data-title="Goalies">
+          <h3>Goalies</h3>
+          <div class="roster-table roster-table-head"><span>#</span><span>Name</span><span>Yr</span><span>Hometown</span></div>
+          <div class="roster-table"><span>30</span><strong>Shane Cook</strong><span>SR</span><span>New Providence, NJ</span></div>
+          <div class="roster-table"><span>31</span><strong>Ian Kee</strong><span>5TH</span><span>Ashburn, VA</span></div>
+          <div class="roster-table"><span>33</span><strong>Tucker Forrest</strong><span>SO</span><span>Vienna, VA</span></div>
+        </div>
+        <div class="roster-sheet-foot"><span>GO HOKIES</span><span>VIRGINIA TECH CLUB HOCKEY</span></div>
+      </section>
     </main>
-    <footer><div class="page-width footer-inner"><span>© 2026 VIRGINIA TECH CLUB HOCKEY</span><span>GO HOKIES <b>◆</b></span></div></footer>
+    <footer><div class="page-width footer-inner"><span class="footer-brand"><img src="clubsports.png" alt="Virginia Tech Sport Clubs" /><span>VIRGINIA TECH CLUB HOCKEY</span></span><span>GO HOKIES <b>◆</b></span></div></footer>
+    <script src="roster.js"></script>
+    <script src="mobile-nav.js"></script>
   </body>
 </html>
