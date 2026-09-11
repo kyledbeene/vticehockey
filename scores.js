@@ -8,25 +8,9 @@ function withViewTransition(update) {
 const gameSeasons = [
   { id: '2026-27', label: '2026-27', file: 'games-2026-27.csv' }
 ];
-const opponentLogoAssets = [
-  'pdf-logos/logo_0.png',
-  'pdf-logos/logo_1.png',
-  'pdf-logos/logo_2.png',
-  'pdf-logos/logo_3.png',
-  'pdf-logos/logo_4.png',
-  'pdf-logos/logo_5.png',
-  'pdf-logos/logo_6.png',
-  'pdf-logos/logo_7.png',
-  'pdf-logos/logo_8.png',
-  'pdf-logos/logo_9.png',
-  'pdf-logos/logo_10.png',
-  'pdf-logos/logo_11.png',
-  'pdf-logos/logo_12.png',
-  'pdf-logos/logo_13.png'
-];
 const opponentLogoMap = {
-  'nc-state': 'school-logos/ncstate.png',
-  unc: 'school-logos/unc.png',
+  'nc-state-d1': 'school-logos/ncstate.png',
+  'unc-d1': 'school-logos/unc.png',
   lindenwood: 'school-logos/lindenwood.png',
   siena: 'school-logos/siena.png',
   'weber-state': 'school-logos/weberst.png',
@@ -35,7 +19,7 @@ const opponentLogoMap = {
   'wake-forest': 'school-logos/wakeforest.png',
   uncw: 'school-logos/uncw.png',
   hpu: 'school-logos/highpoint.png',
-  'fall-classic': 'school-logos/acchl.png',
+  'acchl-fall-classic': 'school-logos/acchl.png',
   'south-carolina': 'school-logos/acha.png',
   wvu: 'school-logos/westvirginia.png',
   ohio: 'school-logos/ohio.png',
@@ -73,12 +57,12 @@ function opponentLogo(game, index) {
     return location.includes('home') ? 'school-logos/libertyhome.png' : 'school-logos/libertyaway.png';
   }
   if (opponentLogoMap[slug]) return opponentLogoMap[slug];
-  const seed = (index + game.opponent.length + game.id.length) % opponentLogoAssets.length;
-  return opponentLogoAssets[seed];
+  return '';
 }
 function scoreLogoMarkup(game, logoPath) {
   const initials = opponentMark(game.opponent || 'OPP');
-  return `<div class="score-logo opponent-logo-box"><img class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" /><span class="opponent-mark-overlay">${initials}</span></div>`;
+  const logo = logoPath ? `<img class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" />` : '';
+  return `<div class="score-logo opponent-logo-box">${logo}<span class="opponent-mark-overlay"${logo ? '' : ' style="display:flex"'}>${initials}</span></div>`;
 }
 function gameCard(game, index) {
   const locationClass = game.location.toLowerCase();
