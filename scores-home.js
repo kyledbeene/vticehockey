@@ -13,7 +13,8 @@ function updateCard(card, game, label, detail) {
 async function updateHomeScores() {
   if (!lastResultCard || !nextUpCard) return;
   try {
-    const response = await fetch('games.csv', { cache: 'no-store' });
+    // Update this filename when a new season's games CSV is added.
+    const response = await fetch('games-2026-27.csv', { cache: 'no-store' });
     if (!response.ok) throw new Error('Games file unavailable');
     const games = parseCsv(await response.text()).map(row => ({id:row[0], date:row[1], opponent:row[3], scores:[row[4],row[5]]}));
     const completed = games.filter(game => game.scores.every(score => score && score.toUpperCase() !== 'TBD'));
