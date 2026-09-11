@@ -10,6 +10,12 @@ const fallbackGoalies = [[30, 'Declan Heffernan', 'G'], [31, 'Wyatt Cleveland', 
 const tables = document.querySelectorAll('.stats-table');
 const loadedRows = new Map();
 
+// Smooths in fetched rows that arrive after the page-navigation transition has already settled.
+function withViewTransition(update) {
+  if (document.startViewTransition) document.startViewTransition(update);
+  else update();
+}
+
 function parseCsv(csv) {
   return csv.trim().split(/\r?\n/).map(line => {
     const fields = [];
@@ -101,13 +107,11 @@ async function loadTable(table, path, fallback) {
     const rows = parseCsv(await response.text()).slice(1).filter(row => row.length > 1 && row[1]);
     if (!rows.length) throw new Error(`No rows in ${path}`);
     loadedRows.set(table, rows);
-    renderRows(table, sortRows(rows, 'number:asc'));
-    addHeaderSorting(table, rows);
+    withViewTransition(() => { renderRows(table, sortRows(rows, 'number:asc')); addHeaderSorting(table, rows); });
   } catch (error) {
     const rows = fallbackRows(fallback);
     loadedRows.set(table, rows);
-    renderRows(table, sortRows(rows, 'number:asc'));
-    addHeaderSorting(table, rows);
+    withViewTransition(() => { renderRows(table, sortRows(rows, 'number:asc')); addHeaderSorting(table, rows); });
     console.info(`${path} is not available; showing the local fallback roster.`);
   }
 }
