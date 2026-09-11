@@ -26,6 +26,7 @@ const opponentLogoMap = {
   'miami-oh': 'school-logos/miami.png',
   maryland: 'school-logos/maryland.png',
   'acchl-playoffs': 'school-logos/acchl.png',
+  'acha-se-regionals': 'school-logos/acha.png',
   'acha-regionals': 'school-logos/acha.png'
 };
 
