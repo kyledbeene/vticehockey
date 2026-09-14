@@ -17,11 +17,11 @@ Saturday’s game against North Carolina is no walk in the park either for Virgi
 
 ## Keys to Victory
 
-# North Carolina State:
+### North Carolina State:
 
 The key here is simple - Get on the board early and let your defense guide you to victory. The atmosphere inside the arena will be loud as NC State will bring the energy from the opening puck drop. By scoring first and early, not only will the Hokies blow the air out of the building, but will force the Icepack to change their tactics offensively. The defense especially will need to be ready for everything, as stamina will play an important role on who comes out on top. Offensively, the Hokies will need to generate scoring chances outside of Kam Khazai. With their all-time scoring leader Peduzzi gone, Tech will need individuals to step up and create opportunities at the net instead of being reliant. 
 
-# North Carolina
+### North Carolina
 
 Similar to NC State, stamina will play a critical factor in how the Hokies perform Saturday against the Tar Heels. Coming off what most likely will be a grueling game Friday against the Icepack, preparation and energy in that 24 hour window will be important in how the game goes. Expect to see some possible new faces in the lineup and them making an impact on the game. 
 
