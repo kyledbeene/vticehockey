@@ -4,8 +4,9 @@ Example front matter:
 ---
 title: Hokies open the season with a win
 category: GAME RECAP
+author: Your Name
 summary: A short summary shown on the news card.
 date: 2026-09-12
 ---
 
-Write the full article here. The first 170 characters become the fallback summary.
+Write the full article here. The first 170 characters become the fallback summary. The optional author field appears as a byline on the full article page.

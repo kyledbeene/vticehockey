@@ -128,6 +128,7 @@ Put the article information at the top between the two `---` lines:
 ---
 title: Hokies open the season with a win
 category: GAME RECAP
+author: Your Name
 summary: Virginia Tech begins the season with a convincing road win.
 date: 2026-09-12
 ---
@@ -137,7 +138,7 @@ Write the full article here.
 Add paragraphs, headings, links, and other Markdown as needed.
 ```
 
-The `title`, `category`, `summary`, and `date` fields appear in the News page and cards. You may also add an optional direct image URL:
+The `title`, `category`, `summary`, and `date` fields appear in the News page and cards. Add an optional `author` field to display a byline on the full article page. You may also add an optional direct image URL:
 
 ```yaml
 image: https://example.com/photo.jpg
