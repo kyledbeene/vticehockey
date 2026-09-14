@@ -18,7 +18,7 @@ function parseFrontMatter(markdown, filename) {
   const fields = {};
   if (match) match[1].split('\n').forEach(line => { const separator = line.indexOf(':'); if (separator > -1) fields[line.slice(0, separator).trim()] = line.slice(separator + 1).trim().replace(/^['"]|['"]$/g, ''); });
   const body = markdown.replace(/^---[\s\S]*?---/, '').replace(/^#\s+[^\n]+/, '').trim().replace(/[*_`]/g, '');
-  return { category: fields.category || 'NEWS', title: fields.title || filename.replace(/\.md$/i, '').replace(/[-_]/g, ' '), summary: fields.summary || body.slice(0, 170), date: fields.date || '', image: fields.image || '', filename, url: `article.html?article=${encodeURIComponent(filename)}` };
+  return { category: fields.category || 'NEWS', title: fields.title || filename.replace(/\.md$/i, '').replace(/[-_]/g, ' '), summary: fields.summary || body.slice(0, 170), author: fields.author || '', date: fields.date || '', image: fields.image || '', filename, url: `article.html?article=${encodeURIComponent(filename)}` };
 }
 function renderArticles(articles) {
   withViewTransition(() => {
