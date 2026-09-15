@@ -45,7 +45,12 @@ function parseCsv(csv) {
   }).filter(row => row[0]);
 }
 function escapeHtml(value) { return String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character])); }
-function formatDate(value) { return new Date(`${value}T12:00:00`).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}).toUpperCase(); }
+function formatDate(value) {
+  const date = String(value || '').includes('/')
+    ? (() => { const [month, day, year] = String(value).split('/').map(Number); return new Date(2000 + year, month - 1, day, 12); })()
+    : new Date(`${value}T12:00:00`);
+  return date.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}).toUpperCase();
+}
 function opponentMark(opponent) { return opponent.split(/\s+/).map(word => word[0]).join('').slice(0, 4).toUpperCase(); }
 function normalizeOpponentKey(value) {
   return String(value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
