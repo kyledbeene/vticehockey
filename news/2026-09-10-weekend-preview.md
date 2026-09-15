@@ -1,5 +1,5 @@
 ---
-title: Weekend Preview: Hokies Open Season on the Road with Clashes against the Icepack and Tar Heels
+title: Weekend Preview- Hokies Open Season on the Road with Clashes against the Icepack and Tar Heels
 category: Article
 author: Chris Pierce
 summary: Opening weekend for Virginia Tech
