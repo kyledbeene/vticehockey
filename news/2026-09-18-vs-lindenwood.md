@@ -1,8 +1,3 @@
-Copy this file, rename it with lowercase hyphens, and change the fields below.
-
-Filename example:
-2026-09-12-season-opener.md
-
 ---
 title: Strong Start not Good Enough as Hokies Drop to Lindenwood in First Game of ACHA Fall Faceoff Invitational
 category: GAME RECAP
@@ -10,9 +5,6 @@ author: Chris Pierce
 summary: Hokies fall to 2024 M2 Champs in Lake Placid
 date: 2026-09-18
 ---
-
-# Strong Start not Good Enough as Hokies Drop to Lindenwood in First Game of ACHA Fall Faceoff Invitational
-
 A historic weekend got underway for the Virginia Tech Men’s Ice Hockey program earlier today, as the Hokies took to the ice for the first of three games against Lindenwood at the ACHA’s Fall Faceoff Invitational in Lake Placid, New York, site of the legendary 1980 “Miracle on Ice.”
 
 After coming strong in the opening minutes, Tech would be unable to sustain its momentum as the reigning 2025 Division II National Champions would eventually find their rhythm and take control of the contest, cruising to a 6-3 victory in Friday’s opener. 
