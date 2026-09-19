@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css?v=20260914" /><link rel="stylesheet" href="scores.css?v=20260914" />
-    <style>.team-menu>button{font-size:14px;line-height:17px;position:relative;top:1px}.team-menu>button span{vertical-align:middle;position:relative;top:-5px}</style>
+    <style>.team-menu>button{font-size:14px;line-height:17px;position:relative;top:1px}.team-menu>button span{vertical-align:middle;position:relative;top:-5px}.score-logo.tbd-opponent{background:#fff;border-color:#fff;padding:0}</style>
   </head>
   <body>
     <div class="topline"><div class="page-width top-line-inner"><span>EST. 2025</span><span>ACCHL M2A DIVISION</span><span>BLACKSBURG, VIRGINIA</span><a class="team-swap-link" href="../index.html">SWAP TO M2 &#8594;</a></div></div>
@@ -38,9 +38,14 @@
     <script>
       (() => {
         const map = {
+          'app-state': 'school-logos/appst.png',
+          'james-madison': 'school-logos/jmu.png',
+          'loyola-maryland': 'school-logos/loyolamaryland.webp',
+          catholic: 'school-logos/Catholic.png',
+          'william-mary': 'school-logos/williamandmary.png',
+          'west-virginia': 'school-logos/wvum2a.jpg',
           'wake-forest': 'school-logos/wakeforest.png',
           'high-point': 'school-logos/highpoint.png',
-          'west-virginia': 'school-logos/westvirginia.png'
         };
 
         const normalize = value => String(value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -52,6 +57,11 @@
           const gameId = new URL(href, window.location.href).searchParams.get('game') || '';
           const key = normalize(gameId.split('-').slice(3).join('-'));
           const isHome = card.classList.contains('home');
+          if (key === 'tbd') {
+            placeholder.parentElement.classList.add('opponent-logo-box', 'tbd-opponent');
+            placeholder.textContent = '';
+            return;
+          }
           let src = map[key];
           if (!src) return;
           const img = document.createElement('img');
@@ -67,6 +77,6 @@
       })();
     </script>
     <script src="mobile-nav.js"></script>
-    <script src="scores.js?v=csv"></script>
+    <script src="scores.js?v=20260919"></script>
   </body>
 </html>

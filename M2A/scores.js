@@ -25,9 +25,14 @@ const opponentLogoAssets = [
   'pdf-logos/logo_13.png'
 ];
 const opponentLogoMap = {
+  'app-state': 'school-logos/appst.png',
+  'james-madison': 'school-logos/jmu.png',
+  'loyola-maryland': 'school-logos/loyolamaryland.webp',
+  catholic: 'school-logos/Catholic.png',
+  'william-mary': 'school-logos/williamandmary.png',
+  'west-virginia': 'school-logos/wvum2a.jpg',
   'wake-forest': 'school-logos/wakeforest.png',
   'high-point': 'school-logos/highpoint.png',
-  'west-virginia': 'school-logos/westvirginia.png'
 };
 
 function parseCsv(csv) {
@@ -62,6 +67,7 @@ function opponentLogo(game, index) {
   return opponentLogoAssets[seed];
 }
 function scoreLogoMarkup(game, logoPath) {
+  if (normalizeOpponentKey(game.opponent) === 'tbd') return '<div class="score-logo opponent-logo-box tbd-opponent" aria-label="Opponent to be determined"></div>';
   const initials = opponentMark(game.opponent || 'OPP');
   return `<div class="score-logo opponent-logo-box"><img class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" /><span class="opponent-mark-overlay">${initials}</span></div>`;
 }
