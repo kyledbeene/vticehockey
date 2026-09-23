@@ -4,9 +4,9 @@ const statsSeasons = [
 ];
 
 const fallbackSkaters = [
-  [2, 'Bryan Rice', 'D'], [3, 'Ethan Garlock', 'F'], [6, "Justin D'Antona", 'F'], [7, 'JH Lages', 'D'], [8, 'Cooper Reger', 'F'], [9, 'Sean Mohr', 'D'], [10, 'Zack Stewart', 'F'], [11, 'Michael McCabe', 'F'], [13, 'Murphy MacLeod', 'D'], [14, 'Barrett Lunder', 'F'], [15, 'Tyler Gordon', 'F'], [16, 'Jacob Wachtel', 'F'], [18, 'Casey Reagan', 'D'], [19, 'Hunter Day', 'D'], [20, 'Tyler Skarka', 'D'], [21, 'Gavin Nau', 'F'], [22, 'Max Sullivan', 'D'], [24, 'West Vaillant', 'F'], [25, 'Billy Linardakis', 'D'], [26, 'Chase Olszewski', 'F'], [27, 'Dhruv Thakare', 'D'], [40, 'Jackson DeVivo', 'F'], [41, 'Kam Khazai', 'F'], [42, 'Ewan Andrew', 'F']
+  [2, 'Caelan Rea', 'D'], [3, 'Alexander Yellin', 'F'], [4, 'Brody Nyitrai', 'D'], [5, 'Tyler Simo', 'D'], [6, 'Sam Hosier', 'F'], [7, 'Taizo Cesari', 'F'], [8, 'Colin Coakley', 'F'], [9, 'Nicholas Frantz', 'D'], [10, 'Mason Skarka', 'D'], [11, 'Austin Hryn', 'F'], [12, 'Joel Vizard', 'D'], [13, 'Victor Doucet', 'F'], [14, 'Grayson Winkler', 'F'], [16, 'Thijs Bakker', 'F'], [17, 'Lester Benitez', 'D'], [18, 'Colm Mulhall', 'F'], [19, 'Jackson Benward', 'F'], [20, 'Logan Pearle', 'F'], [21, 'Dean Hryn', 'F'], [22, 'Ryan Degnan', 'F'], [23, 'Christopher Kube', 'D'], [24, 'Brandon Anderson', 'F'], [25, 'Joseph Piccolo', 'D'], [26, 'Alex Mallios', 'D'], [27, 'Tyler Ng', 'D'], [28, 'Adam Turski', 'F']
 ];
-const fallbackGoalies = [[30, 'Declan Heffernan', 'G'], [31, 'Wyatt Cleveland', 'G'], [32, 'Aidan Khazai', 'G'], [33, 'Tucker Forrest', 'G']];
+const fallbackGoalies = [[30, 'Dante Dilegge', 'G'], [31, 'Liam Conry', 'G'], [32, 'Matt Kohlhepp', 'G']];
 const tables = document.querySelectorAll('.stats-table');
 const loadedRows = new Map();
 
