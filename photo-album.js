@@ -7,6 +7,31 @@ const album = new URLSearchParams(location.search).get('album');
 if (albumNames[album]) { document.title = `${albumNames[album]} | Virginia Tech Hockey Photos`; document.querySelector('#album-title').innerHTML = `${albumNames[album].split(' · ')[0]} <em>PHOTOS.</em>`; }
 document.querySelectorAll('.nav a').forEach(link => { if (link.textContent.trim() === 'News') link.href = `${root}news.html`; if (link.textContent.trim() === 'Scores') link.href = `${root}scores.html`; if (link.textContent.trim() === 'Stats') link.href = `${root}stats.html`; });
 
+function escapeAttribute(value) {
+	return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+}
+
+async function downloadPhoto(button) {
+	button.disabled = true;
+	button.textContent = 'Downloading...';
+	try {
+		const response = await fetch(button.dataset.downloadUrl);
+		if (!response.ok) throw new Error('Download failed');
+		const objectUrl = URL.createObjectURL(await response.blob());
+		const link = document.createElement('a');
+		link.href = objectUrl;
+		link.download = button.dataset.filename;
+		link.click();
+		setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+	} catch (error) {
+		button.textContent = 'Retry download';
+		button.title = 'The photo could not be downloaded. Try again.';
+	} finally {
+		button.disabled = false;
+		if (button.textContent === 'Downloading...') button.textContent = 'Download';
+	}
+}
+
 async function loadAlbumPhotos() {
 	if (!album) return;
 	try {
@@ -15,9 +40,13 @@ async function loadAlbumPhotos() {
 		const files = await response.json();
 		const images = files.filter(file => file.type === 'file' && /\.(jpe?g|png|gif|webp)$/i.test(file.name));
 		const gallery = document.querySelector('.album-gallery');
-		if (images.length) gallery.innerHTML = images.map((image, index) => `<img class="album-photo" src="${image.download_url}" alt="${albumNames[album] || album} photo ${index + 1}" loading="lazy">`).join('');
+		if (images.length) gallery.innerHTML = images.map((image, index) => `<article class="album-item"><img class="album-photo" src="${escapeAttribute(image.download_url)}" alt="${escapeAttribute(albumNames[album] || album)} photo ${index + 1}" loading="lazy"><button class="album-download" type="button" data-download-url="${escapeAttribute(image.download_url)}" data-filename="${escapeAttribute(image.name)}" aria-label="Download ${escapeAttribute(image.name)}">Download</button></article>`).join('');
 	} catch (error) { console.info('Album photos are not available yet; showing the empty album state.'); }
 }
+document.querySelector('.album-gallery').addEventListener('click', event => {
+	const button = event.target.closest('.album-download');
+	if (button) downloadPhoto(button);
+});
 loadAlbumPhotos();
 
 if (!document.querySelector('.site-header')) document.body.insertAdjacentHTML('afterbegin', siteHeader);
