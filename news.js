@@ -1,11 +1,10 @@
-const repository = 'kyledbeene/vticehockey';
-const articleDirectory = 'news';
+const articleIndexPath = location.pathname.includes('/M2A/') ? '../news/news-index.json' : 'news/news-index.json';
+const articleCacheKey = 'vthockey-news-index-v1';
+const articleCacheDuration = 5 * 60 * 1000;
 const fallbackArticles = [
-  { category: 'GAME RECAP', title: 'Hokies close regular season with a statement win', summary: 'Virginia Tech finishes the regular season on home ice with a 5-2 win and plenty of momentum heading into the postseason.', number: '01' },
-  { category: 'PREVIEW', title: 'Rivalry night is back under the lights', summary: 'The Hokies return to the ice for a high-energy weekend against Liberty.', number: '02' },
-  { category: 'FEATURE', title: 'Inside the room: Built one shift at a time', summary: 'A closer look at the habits, friendships, and relentless work behind the team.', number: '03' },
-  { category: 'PROGRAM', title: 'Hokies set the standard for a new season', summary: 'Preparation continues as the team sets its sights on another run in the ACCHL.', number: '04' },
-  { category: 'COMMUNITY', title: 'Maroon and orange show up on home ice', summary: 'Hokie Nation brings the energy every time the team takes the ice.', number: '05' }
+  { category: 'GAME RECAP', title: 'Strong Start not Good Enough as Hokies Drop to Lindenwood in First Game of ACHA Fall Faceoff Invitational', summary: 'Hokies fall to 2024 M2 Champs in Lake Placid', date: '2026-09-18', filename: '2026-09-18-vs-lindenwood.md', url: 'article.html?article=2026-09-18-vs-lindenwood.md' },
+  { category: 'Article', title: 'Weekend Preview- Hokies Open Season on the Road with Clashes against the Icepack and Tar Heels', summary: 'Opening weekend for Virginia Tech', date: '2026-09-10', filename: '2026-09-10-weekend-preview.md', url: 'article.html?article=2026-09-10-weekend-preview.md' },
+  { category: 'Article', title: 'Analyzing the Hokies 2026-27 Season Schedule - Key Matchups and New Destinations to Look Out For!', summary: 'A look at the Hokies\u0027 opponents this season', date: '2026-09-08', filename: '2026-09-08-schedule-outlook.md', url: 'article.html?article=2026-09-08-schedule-outlook.md' }
 ];
 const grid = document.querySelector('.news-grid');
 // Smooths in fetched articles that arrive after the page-navigation transition has already settled.
@@ -26,18 +25,36 @@ function renderArticles(articles) {
   });
   window.dispatchEvent(new CustomEvent('news:updated', { detail: articles }));
 }
-async function loadGitHubArticles() {
+function readArticleCache() {
   try {
-    const rootResponse = await fetch(`https://api.github.com/repos/${repository}/contents`);
-    if (!rootResponse.ok) return;
-    const rootFiles = await rootResponse.json();
-    if (!rootFiles.some(file => file.name === articleDirectory && file.type === 'dir')) return;
-    const response = await fetch(`https://api.github.com/repos/${repository}/contents/${articleDirectory}`);
-    if (!response.ok) return;
-    const files = await response.json();
-    const articles = await Promise.all(files.filter(file => file.name.toLowerCase().endsWith('.md')).map(async file => { const detail = await fetch(file.url).then(result => result.json()); const markdown = atob(detail.content.replace(/\n/g, '')); return parseFrontMatter(markdown, file.name); }));
-    if (articles.length) renderArticles(articles.sort((first, second) => new Date(second.date) - new Date(first.date)));
-  } catch (error) { console.info('GitHub news is not available yet; showing local cards.'); }
+    const cached = JSON.parse(localStorage.getItem(articleCacheKey) || 'null');
+    return cached && Array.isArray(cached.articles) ? cached : null;
+  } catch (error) { return null; }
+}
+function writeArticleCache(articles) {
+  try { localStorage.setItem(articleCacheKey, JSON.stringify({ savedAt: Date.now(), articles })); }
+  catch (error) { console.info('News cache is not available in this browser.'); }
+}
+async function loadArticles() {
+  const cached = readArticleCache();
+  if (cached?.articles.length && Date.now() - cached.savedAt < articleCacheDuration) {
+    renderArticles(cached.articles);
+    return;
+  }
+  try {
+    const response = await fetch(`${articleIndexPath}?v=20261006`, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`News index request failed (${response.status})`);
+    const articles = await response.json();
+    if (!Array.isArray(articles)) throw new Error('News index is invalid');
+    const sortedArticles = articles.sort((first, second) => new Date(second.date) - new Date(first.date));
+    if (sortedArticles.length) {
+      writeArticleCache(sortedArticles);
+      renderArticles(sortedArticles);
+    } else if (cached?.articles.length) renderArticles(cached.articles);
+  } catch (error) {
+    if (cached?.articles.length) renderArticles(cached.articles);
+    console.info('News index is unavailable; showing cached or fallback stories.');
+  }
 }
 renderArticles(fallbackArticles);
-loadGitHubArticles();
+loadArticles();

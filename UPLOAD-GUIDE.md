@@ -146,6 +146,14 @@ image: https://example.com/photo.jpg
 
 The article date controls newest-first ordering. Files such as `ARTICLE-FORMAT.txt` are instructions only and will not appear as articles.
 
+After adding or editing a news Markdown file, regenerate the static news index from the site root:
+
+```text
+python3 generate-news-index.py
+```
+
+Commit both the Markdown file and `news/news-index.json`. The home carousel and News page read this same-site index, so they do not depend on the GitHub API rate limit. Article pages load Markdown from the raw GitHub CDN.
+
 ## Stats
 
 Update the two CSV files in the `stats` folder:
