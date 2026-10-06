@@ -2,6 +2,29 @@ function initializeMobileNavigation() {
   const navigation = document.querySelector('.nav');
   if (!navigation || navigation.dataset.mobileNavigationReady) return;
   navigation.dataset.mobileNavigationReady = 'true';
+  const moreMenu = navigation.querySelector('.more-menu');
+  if (moreMenu) {
+    const moreLinks = moreMenu.querySelectorAll('.team-dropdown > a');
+    moreLinks.forEach(link => navigation.insertBefore(link, moreMenu));
+    moreMenu.remove();
+  }
+  const mediaLabels = new Set(['News', 'Game Notes', 'Photos']);
+  const mediaLinks = [...navigation.children].filter(child => child.matches('a') && mediaLabels.has(child.textContent.trim()));
+  if (mediaLinks.length) {
+    const mediaMenu = document.createElement('div');
+    mediaMenu.className = 'team-menu media-menu';
+    const mediaButton = document.createElement('button');
+    mediaButton.type = 'button';
+    mediaButton.innerHTML = 'Media <span>⌄</span>';
+    mediaButton.setAttribute('aria-haspopup', 'true');
+    const mediaDropdown = document.createElement('div');
+    mediaDropdown.className = 'team-dropdown';
+    mediaLinks.forEach(link => mediaDropdown.appendChild(link));
+    mediaMenu.append(mediaButton, mediaDropdown);
+    const homeLink = [...navigation.children].find(child => child.matches('a') && child.textContent.trim() === 'Home');
+    if (homeLink) homeLink.after(mediaMenu);
+    else navigation.prepend(mediaMenu);
+  }
   document.querySelectorAll('.top-line-inner span, .mark-label small').forEach(label => {
     if (label.textContent.trim().startsWith('EST.')) label.textContent = 'EST. 2025';
   });
