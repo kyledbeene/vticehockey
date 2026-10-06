@@ -8,7 +8,7 @@
 .portal-nav .portal-nav-m2a{border-color:var(--maroon)}
 .club-hero{align-items:center;background:#090b0d;display:flex;isolation:isolate;min-height:590px;overflow:hidden;position:relative}
 .club-hero::after{background:rgba(7,9,11,.56);content:"";inset:0;position:absolute;z-index:-1}
-.club-hero-image{height:100%;inset:0;object-fit:cover;object-position:center 44%;position:absolute;width:100%;z-index:-2}
+.club-hero-image{height:100%;inset:0;object-fit:cover;object-position:center 70%;position:absolute;transform:scale(1.2);transform-origin:center 70%;width:100%;z-index:-2}
 .club-hero-content{padding-bottom:92px;padding-top:76px;position:relative}
 .club-hero h1{color:#f5f6f3;font-family:'Barlow Condensed',sans-serif;font-size:68px;line-height:.94;margin:0;max-width:760px;text-transform:uppercase}
 .club-hero h1 em{color:var(--orange);font-style:normal}
@@ -49,7 +49,7 @@
   .social-links{grid-column:1 / -1;grid-row:2}
   .portal-footer-inner>span:last-child{grid-column:2;grid-row:1}
   .club-hero{min-height:510px}
-  .club-hero-image{object-position:58% center}
+  .club-hero-image{object-position:58% 58%;transform:none}
   .club-hero-content{padding-bottom:78px;padding-top:62px}
   .club-hero h1{font-size:50px}
   .club-hero-copy{font-size:14px;max-width:420px}
