@@ -72,8 +72,8 @@ function initializeMobileNavigation() {
   if (footer && !footer.querySelector('.social-links')) {
     const socialLinks = document.createElement('nav');
     socialLinks.className = 'social-links';
-    socialLinks.setAttribute('aria-label', 'M2A social media accounts');
-    socialLinks.innerHTML = '<a class="social-link" href="https://www.instagram.com/vtd3icehockey/" target="_blank" rel="noopener noreferrer" aria-label="M2A Instagram @vtd3icehockey" title="M2A Instagram @vtd3icehockey"><svg class="social-icon-instagram" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="social-icon-dot" cx="17.5" cy="6.8" r=".8"/></svg></a>';
+    socialLinks.setAttribute('aria-label', 'D3 social media accounts');
+    socialLinks.innerHTML = '<a class="social-link" href="https://www.instagram.com/vtd3icehockey/" target="_blank" rel="noopener noreferrer" aria-label="D3 Instagram @vtd3icehockey" title="D3 Instagram @vtd3icehockey"><svg class="social-icon-instagram" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="social-icon-dot" cx="17.5" cy="6.8" r=".8"/></svg></a>';
     footer.insertBefore(socialLinks, footer.lastElementChild);
   }
 }

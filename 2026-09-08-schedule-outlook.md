@@ -15,7 +15,7 @@ As opposed to a travel heavy first half, the new year brings five straight home 
 
 One of the key matchups for Tech will come in their season opener against North Carolina State in Raleigh. Last year, the Icepack dominated the Hokies 5-1 in Vinton, which was also the first game of the season, leaving a vengeful Tech squad looking to upset State on their home ice this Friday Night. Other early season highlights include Tech traveling to Lynchburg to face off against both of Liberty’s division one and two squads.
 
-In the ACCHL, the premier division was refined this past offseason with the loss of Penn State to the TSCHL as the league promoted 2025-26 Elite Champions St. Joseph’s University to a stacked lineup of M2 squads. The Hokies will face UNCW, High Point, Wake Forest, West Virginia and Maryland during the regular season, and the remaining three teams (Rowan, St. Joes, and Delaware) in Springfield, Virginia during the annual ACCHL Fall Classic. 
+In the ACCHL, the premier division was refined this past offseason with the loss of Penn State to the TSCHL as the league promoted 2025-26 Elite Champions St. Joseph’s University to a stacked lineup of D2 squads. The Hokies will face UNCW, High Point, Wake Forest, West Virginia and Maryland during the regular season, and the remaining three teams (Rowan, St. Joes, and Delaware) in Springfield, Virginia during the annual ACCHL Fall Classic. 
 
 ## Outlook:
 

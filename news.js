@@ -2,7 +2,7 @@ const articleIndexPath = location.pathname.includes('/M2A/') ? '../news/news-ind
 const articleCacheKey = 'vthockey-news-index-v1';
 const articleCacheDuration = 5 * 60 * 1000;
 const fallbackArticles = [
-  { category: 'GAME RECAP', title: 'Strong Start not Good Enough as Hokies Drop to Lindenwood in First Game of ACHA Fall Faceoff Invitational', summary: 'Hokies fall to 2024 M2 Champs in Lake Placid', date: '2026-09-18', filename: '2026-09-18-vs-lindenwood.md', url: 'article.html?article=2026-09-18-vs-lindenwood.md' },
+  { category: 'GAME RECAP', title: 'Strong Start not Good Enough as Hokies Drop to Lindenwood in First Game of ACHA Fall Faceoff Invitational', summary: 'Hokies fall to 2024 D2 Champs in Lake Placid', date: '2026-09-18', filename: '2026-09-18-vs-lindenwood.md', url: 'article.html?article=2026-09-18-vs-lindenwood.md' },
   { category: 'Article', title: 'Weekend Preview- Hokies Open Season on the Road with Clashes against the Icepack and Tar Heels', summary: 'Opening weekend for Virginia Tech', date: '2026-09-10', filename: '2026-09-10-weekend-preview.md', url: 'article.html?article=2026-09-10-weekend-preview.md' },
   { category: 'Article', title: 'Analyzing the Hokies 2026-27 Season Schedule - Key Matchups and New Destinations to Look Out For!', summary: 'A look at the Hokies\u0027 opponents this season', date: '2026-09-08', filename: '2026-09-08-schedule-outlook.md', url: 'article.html?article=2026-09-08-schedule-outlook.md' }
 ];

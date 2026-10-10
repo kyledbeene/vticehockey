@@ -2,7 +2,7 @@
 title: Strong Start not Good Enough as Hokies Drop to Lindenwood in First Game of ACHA Fall Faceoff Invitational
 category: GAME RECAP
 author: Chris Pierce
-summary: Hokies fall to 2024 M2 Champs in Lake Placid
+summary: Hokies fall to 2024 D2 Champs in Lake Placid
 date: 2026-09-18
 ---
 A historic weekend got underway for the Virginia Tech Men’s Ice Hockey program earlier today, as the Hokies took to the ice for the first of three games against Lindenwood at the ACHA’s Fall Faceoff Invitational in Lake Placid, New York, site of the legendary 1980 “Miracle on Ice.”
