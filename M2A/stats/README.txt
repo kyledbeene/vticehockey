@@ -5,7 +5,7 @@ Edit skaters-2026-27.csv and goalies-2026-27.csv directly in GitHub. The Stats p
 The first row is the column header. Keep the header names and order unchanged. Type a player's current value in the matching row. Use -- when a statistic is not available yet.
 
 skaters-2026-27.csv columns:
-#, Player, Pos, GP, G, A, PTS, Pt/G, PPG, SHG, GWG, SOG, W, PIM, SH%
+#, Player, Pos, GP, G, A, PTS, Pt/G, PPG, SHG, GWG, PIM
 
 goalies-2026-27.csv columns:
 #, Player, Pos, GP, W, L, OTL, SOL, GA, GAA, SVS, SV%, SO, Min, SOW

@@ -58,3 +58,7 @@ Scores, Roster, and Stats each read from a CSV file named with the current seaso
 5. For Photos, just create new album folders as usual (see below) — the year is read automatically from the folder name, so no file renaming is needed there.
 
 Older seasons remain selectable from each dropdown as long as their CSV files stay in the project.
+
+## Auto-updating stats
+
+Run `python3 scripts/update_stats.py d2` after a D2 game to pull the latest numbers from the ACHA stats feed into `stats/*.csv`. For D3, export the player and goalie tables from GameSheet (they save to Downloads as `player-stats*.csv` and `goalie-stats*.csv`), then run `python3 scripts/update_stats.py d3` to merge them into `M2A/stats/*.csv`. Use `all` for both and `--dry-run` to preview. Existing names, positions and row order are kept; only the stat columns change. Then review with `git diff` and commit.

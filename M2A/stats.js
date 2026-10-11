@@ -37,7 +37,8 @@ function fallbackRows(players) {
 
 function renderRows(table, rows) {
   const body = table.querySelector('tbody');
-  body.innerHTML = rows.map(row => `<tr>${row.map((value, index) => `<td${index === 1 ? ' class="stats-player"' : ''}>${value || '--'}</td>`).join('')}</tr>`).join('');
+  const cols = table.querySelectorAll('thead th').length;
+  body.innerHTML = rows.map(row => `<tr>${row.slice(0, cols).map((value, index) => `<td${index === 1 ? ' class="stats-player"' : ''}>${value || '--'}</td>`).join('')}</tr>`).join('');
 }
 
 function numericValue(value) {
