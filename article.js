@@ -7,8 +7,59 @@ function parseArticle(markdown, fallbackTitle = 'Virginia Tech Hockey') {
   const body = markdown.replace(/^---[\s\S]*?---/, '').replace(/^#\s+[^\n]+\s*/, '').replace(/^!\[[^\]]*\]\([^)]*\)\s*/m, '').trim();
   return {title, category: fields.category || 'NEWS', author: fields.author || '', date: fields.date || '', image: fields.image || '', body};
 }
+function setMeta(attribute, key, content) {
+  let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, key);
+    document.head.append(element);
+  }
+  element.content = content;
+}
 function render(article) {
   document.title = `${article.title} | Virginia Tech Hockey`;
+  const description = article.body.replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[#*_`>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 160);
+  const canonicalUrl = new URL(window.location.href);
+  canonicalUrl.search = '';
+  canonicalUrl.searchParams.set('article', filename);
+  const imageUrl = article.image ? new URL(article.image, window.location.href).href : 'https://virginiatechicehockey.com/photos/2026-09-26-liberty/DSC02296.jpg';
+  setMeta('name', 'description', description);
+  setMeta('property', 'og:title', document.title);
+  setMeta('property', 'og:description', description);
+  setMeta('property', 'og:type', 'article');
+  setMeta('property', 'og:url', canonicalUrl.href);
+  setMeta('property', 'og:image', imageUrl);
+  setMeta('name', 'twitter:card', 'summary_large_image');
+  let canonical = document.head.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.append(canonical);
+  }
+  canonical.href = canonicalUrl.href;
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description,
+    mainEntityOfPage: canonicalUrl.href,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Virginia Tech Club Hockey',
+      url: 'https://virginiatechicehockey.com/'
+    }
+  };
+  if (/^\d{4}-\d{2}-\d{2}$/.test(article.date)) structuredData.datePublished = article.date;
+  if (article.author) structuredData.author = {'@type': 'Person', name: article.author};
+  if (article.image) structuredData.image = imageUrl;
+  let schema = document.head.querySelector('script[data-article-schema]');
+  if (!schema) {
+    schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.dataset.articleSchema = '';
+    document.head.append(schema);
+  }
+  schema.textContent = JSON.stringify(structuredData);
   document.querySelector('#article-meta').textContent = `${article.category} · ${article.date}`;
   const author = document.querySelector('#article-author');
   author.hidden = !article.author;

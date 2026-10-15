@@ -8,6 +8,10 @@ Open `index.html` directly in a browser, or serve the folder with any static fil
 
 Replace the typographic VT crest in `index.html` with the official team logo asset when one is available. The roster page uses a single-page 2024-25 roster PDF recreated from the supplied final page; replace `roster.pdf` with the original extracted page when the source PDF is added to the project.
 
+## Search indexing
+
+`robots.txt` points search engines to `sitemap.xml`. When adding or removing a public page, update the sitemap and give the page its own descriptive title, meta description, and canonical URL. When publishing a news article, also add its `article.html?article=...` URL to the sitemap. News article metadata is set by `article.js` from each article's front matter and content. Submit the sitemap in Google Search Console after verifying the domain; rankings depend on ongoing useful content, links, and search performance, not metadata alone.
+
 ## Roster
 
 Update `roster-2026-27.csv` directly in GitHub or open it in Excel or Google Sheets. Keep the header row (`group,number,name,year,height,weight,shot,hometown`) unchanged. The `group` column must be `forwards`, `defensemen`, or `goalies`. Write height as feet and inches without a quote mark, for example `6'1` (the page adds the inch mark automatically). The Roster page loads this file automatically and lists players in the row order you save them in.
