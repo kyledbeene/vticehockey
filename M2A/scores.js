@@ -8,22 +8,6 @@ function withViewTransition(update) {
 const gameSeasons = [
   { id: '2026-27', label: '2026-27', file: 'games-2026-27.csv' }
 ];
-const opponentLogoAssets = [
-  'pdf-logos/logo_0.png',
-  'pdf-logos/logo_1.png',
-  'pdf-logos/logo_2.png',
-  'pdf-logos/logo_3.png',
-  'pdf-logos/logo_4.png',
-  'pdf-logos/logo_5.png',
-  'pdf-logos/logo_6.png',
-  'pdf-logos/logo_7.png',
-  'pdf-logos/logo_8.png',
-  'pdf-logos/logo_9.png',
-  'pdf-logos/logo_10.png',
-  'pdf-logos/logo_11.png',
-  'pdf-logos/logo_12.png',
-  'pdf-logos/logo_13.png'
-];
 const opponentLogoMap = {
   'app-state': 'school-logos/appst.png',
   'james-madison': 'school-logos/jmu.png',
@@ -63,8 +47,7 @@ function opponentLogo(game, index) {
     return location.includes('home') ? 'school-logos/libertyhome.png' : 'school-logos/libertyaway.png';
   }
   if (opponentLogoMap[slug]) return opponentLogoMap[slug];
-  const seed = (index + game.opponent.length + game.id.length) % opponentLogoAssets.length;
-  return opponentLogoAssets[seed];
+  return '';
 }
 function scoreLogoMarkup(game, logoPath) {
   if (normalizeOpponentKey(game.opponent) === 'tbd') return '<div class="score-logo opponent-logo-box tbd-opponent" aria-label="Opponent to be determined"></div>';
