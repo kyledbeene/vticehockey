@@ -40,3 +40,17 @@ articles = [parse_article(path) for path in NEWS_DIRECTORY.glob('*.md')]
 articles.sort(key=lambda article: article['date'], reverse=True)
 OUTPUT_FILE.write_text(json.dumps(articles, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 print(f'Wrote {len(articles)} articles to {OUTPUT_FILE.relative_to(ROOT)}')
+
+# Keep sitemap.xml in step: add any article missing from it (existing entries are left alone).
+SITEMAP_FILE = ROOT / 'sitemap.xml'
+ARTICLE_URL = 'https://virginiatechicehockey.com/article.html?article={}'
+sitemap = SITEMAP_FILE.read_text(encoding='utf-8')
+missing = [a for a in articles if ARTICLE_URL.format(a['filename']) not in sitemap]
+if missing:
+    lines = ''.join(f"  <url><loc>{ARTICLE_URL.format(a['filename'])}</loc></url>\n" for a in missing)
+    marker = '  <url><loc>' + ARTICLE_URL.format('')
+    position = sitemap.find(marker)
+    if position == -1:
+        position = sitemap.rfind('</urlset>')
+    SITEMAP_FILE.write_text(sitemap[:position] + lines + sitemap[position:], encoding='utf-8')
+    print(f'Added {len(missing)} article(s) to sitemap.xml')

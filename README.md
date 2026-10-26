@@ -27,7 +27,10 @@ To publish an article:
 3. Write the full article below the closing `---` line using Markdown.
 4. Add an optional `image:` field with a direct image URL.
 5. Upload or commit the new `.md` file to the repository's `news` folder.
-6. Refresh the website after GitHub has saved the file.
+6. Wait about a minute: a GitHub Action (`.github/workflows/news-index.yml`) rebuilds `news/news-index.json` and adds the article to `sitemap.xml` automatically. Check the Actions tab if it doesn't appear.
+7. Refresh the website. The News page caches the list for 5 minutes, so a hard refresh may be needed.
+
+The News page reads `news/news-index.json`, not the `.md` files directly. If the Action is ever unavailable, run `python3 generate-news-index.py` locally and commit the changed `news/news-index.json` and `sitemap.xml`.
 
 Use `news/ARTICLE-FORMAT.txt` for the field reference. The article date controls the newest-first order. The template and format reference are `.txt` files, so they will not appear as news cards.
 
