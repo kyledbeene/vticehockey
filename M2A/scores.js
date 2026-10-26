@@ -69,7 +69,7 @@ function opponentLogo(game, index) {
 function scoreLogoMarkup(game, logoPath) {
   if (normalizeOpponentKey(game.opponent) === 'tbd') return '<div class="score-logo opponent-logo-box tbd-opponent" aria-label="Opponent to be determined"></div>';
   const initials = opponentMark(game.opponent || 'OPP');
-  return `<div class="score-logo opponent-logo-box"><img class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" /><span class="opponent-mark-overlay">${initials}</span></div>`;
+  return `<div class="score-logo opponent-logo-box"><img loading="lazy" decoding="async" class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" /><span class="opponent-mark-overlay">${initials}</span></div>`;
 }
 function gameCard(game, index) {
   const locationClass = game.location.toLowerCase();

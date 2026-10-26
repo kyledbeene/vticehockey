@@ -67,7 +67,7 @@ function opponentLogo(game, index) {
 }
 function scoreLogoMarkup(game, logoPath) {
   const initials = opponentMark(game.opponent || 'OPP');
-  const logo = logoPath ? `<img class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" />` : '';
+  const logo = logoPath ? `<img loading="lazy" decoding="async" class="opponent-logo" src="${logoPath}" alt="${escapeHtml(game.opponent)} logo" onerror="this.style.display='none'; this.parentElement.querySelector('.opponent-mark-overlay').style.display='flex';" />` : '';
   return `<div class="score-logo opponent-logo-box">${logo}<span class="opponent-mark-overlay"${logo ? '' : ' style="display:flex"'}>${initials}</span></div>`;
 }
 function gameCard(game, index) {
