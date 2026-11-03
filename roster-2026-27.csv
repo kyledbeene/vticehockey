@@ -1,5 +1,6 @@
 group,number,name,year,height,weight,shot,hometown
 forwards,3,Ethan Garlock,Senior,6'3,195,R,"Princeton, NJ"
+forwards,4,Jack Nolan,Freshman,,,,"North Falmouth, MA"
 forwards,6,Justin D'Antona,Sophomore,5'9,190,L,"Melrose, MA"
 forwards,8,Cooper Reger,Freshman,6'1,172,L,"Roanoke, VA"
 forwards,10,Zack Stewart,Junior,6'0,195,L,"Richmond, VA"
@@ -27,4 +28,3 @@ goalies,30,Declan Heffernan,Freshman,6'1,190,L,"Bay Shore, NY"
 goalies,31,Wyatt Cleveland,Freshman,6'0,150,L,"Roanoke, VA"
 goalies,32,Aidan Khazai,Freshman,5'10,185,L,"McLean, VA"
 goalies,33,Tucker Forrest,Junior,5'9,160,L,"Vienna, VA"
-forwards,4,Jack Nolan,Freshman,,,,"North Falmouth, MA"
